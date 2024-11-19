@@ -26,16 +26,24 @@ install_package() {
   echo "$package_name installed."
 }
 
-# Display menu and allow user to select options
-echo "Ubuntu Performance Setup Menu"
-echo "-----------------------------"
-echo "[*] Install Net Tools (./. installed)"
-echo "[ ] Install Developer Essentials (./. installed)"
-echo "[ ] Install Development Kit"
-echo "[ ] Install All"
+# Create a dialog menu
+dialog_menu() {
+  exec 3>&1
+  option=$(dialog --clear --title "Ubuntu Performance Setup Menu" \
+    --menu "Select an option" 15 50 4 \
+    1 "Install Net Tools" \
+    2 "Install Developer Essentials" \
+    3 "Install Development Kit" \
+    4 "Install All" \
+    2>&1 1>&3)
+  exitcode=$?
+  exec 3>&-
 
-while true; do
-  read -p "Select option (1-4, q to quit): " option
+  if [ $exitcode -ne 0 ]; then
+    echo "Exiting the script."
+    exit
+  fi
+
   case $option in
     1)
       if confirm_install "Do you want to install Net Tools?"; then
@@ -57,12 +65,13 @@ while true; do
         install_package "$all_essentials"
       fi
       ;;
-    q|Q)
-      echo "Exiting the script."
-      break
-      ;;
     *)
-      echo "Invalid option. Please select a valid number or q to quit."
+      echo "Invalid option."
       ;;
   esac
+}
+
+# Main loop to keep the menu showing
+while true; do
+  dialog_menu
 done
