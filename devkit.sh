@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Check if dialog is installed, and install if necessary
+if ! command -v dialog &> /dev/null
+then
+    echo "dialog is not installed. Installing dialog..."
+    sudo apt update
+    sudo apt install -y dialog
+fi
+
 # List of essential packages
 net_tools="net-tools wireless-tools"
 developer_essentials="python3 nodejs build-essential g++"
@@ -39,7 +47,8 @@ dialog_menu() {
   exitcode=$?
   exec 3>&-
 
-  if [ $exitcode -ne 0 ]; then
+  # Handle dialog cancel or exit (exitcode = 1 or 255 means user canceled)
+  if [ $exitcode -eq 1 ] || [ $exitcode -eq 255 ]; then
     echo "Exiting the script."
     exit
   fi
