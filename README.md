@@ -18,7 +18,7 @@ The script provides a text-based menu to select what you want to install, and wi
    Clone the repository to your local machine by running the following command:
 
    ```bash
-   git clone https://github.com/itswyattfr/devkit-bash
+   git clone [https://github.com/itswyattfr/devkit-bash](https://github.com/itswyattfr/devkit-bash.git)
 2. **Make the Script Executable**:
 
    In your terminal, run the following command to give the script execution permissions:
