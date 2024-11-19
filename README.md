@@ -13,13 +13,15 @@ The script provides a text-based menu to select what you want to install, and wi
 
 ## Installation
 
-1. **Clone or Download the Script**:
+1. **Clone the Repository**:
 
-   - Clone the repository or download the script to your local machine.
+   Clone the repository to your local machine by running the following command:
 
+   ```bash
+   git clone https://github.com/itswyattfr/devkit-bash
 2. **Make the Script Executable**:
 
    In your terminal, run the following command to give the script execution permissions:
 
    ```bash
-   chmod +x install_menu.sh
+   chmod +x devkit.sh
