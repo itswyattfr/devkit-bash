@@ -24,4 +24,4 @@ The script provides a text-based menu to select what you want to install, and wi
    In your terminal, run the following command to give the script execution permissions:
 
    ```bash
-   chmod +x devkit.sh
+   chmod +x ./devkit-bash/devkit.sh
